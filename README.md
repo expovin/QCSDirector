@@ -11,5 +11,10 @@ You need to install and setup [qlik-cli](https://github.com/qlik-oss/qlik-cli) a
 ## JSON Sequence Descriptor file
 This tool need a descriptor JSON file to drive the right reload sequence. The JSON is a dictionary of tasks to run as key value pairs. Each key represent the task label whereas the value contain the application details to run.
 All tasks at the same level will run simultaneously, each task can specify the list of dependent reloads to run in case of SUCCESS or FAILURE with the same strcture. You can nested as many level as you want.
-
 ![JSON_Example](https://raw.githubusercontent.com/expovin/QCSDirector/master/img/JSON_Example.png)
+the JSON file above should be graphically represented by the following flow
+![Chart](https://raw.githubusercontent.com/expovin/QCSDirector/master/img/Chart.png)
+
+## Logs
+
+
