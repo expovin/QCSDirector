@@ -1,16 +1,18 @@
 #!/bin/bash
 # Author : Vincenzo Esposito
+# This script start loading the app wiht specific id and wait the end of task
+# Return the completed State SUCCEEDED | FAILED with the appid
 
-echo "Start Chaining app"
+if [ $# -lt 4 ]; then
+    echo "\tUsage $0 <sequenceFile> <parent|null> <TaskName> <appId> [executionId]"
+    exit 1
+fi
 
-#Define the app to schedule
-app1="c6b0337f-8b23-419f-9441-d92b9d0736bc"
-app2="3f30032c-e702-4cd6-adb1-49406c1de43b"
-app3=""
 
-function runApp() {
-    reload1="$(qlik reload create --appId $1 | jq -r .id)"
-    echo "Reload app $1 started with id $reload1"
+function runTask() {
+    reload1="$(qlik reload create --appId $4 | jq -r .id)"
+    echo "Reload app $4 started with id $reload1"
+
     status="STARTED"
 
     while [[ "$status" != "EXIT" ]]; 
@@ -27,7 +29,7 @@ function runApp() {
                     ;;
 
                 "RELOADING")
-                    echo -n "Task running "$raskId
+                    echo -n "Task running "$raskId" "
                     ;;
 
                 "SUCCEEDED")
@@ -46,6 +48,17 @@ function runApp() {
                     endTime="$(echo $reload | jq -r .endTime)"
                     status="$(echo $reload | jq -r .status)"
                     echo "App id $appId ended status $status duration $duration endTime $endTime"
+                    echo $reload > ./logs/$5/$3_$status.json
+
+                    echo "Try to start $3.$status"
+                    if [[ "$2" != "null" ]]; then    
+                        echo ./startSequence.sh $1 $2.$3.$status $5                    
+                        ./startSequence.sh $1 $2.$3.$status $5
+                    else
+                        echo ./startSequence.sh $1 $3.$status $5   
+                        ./startSequence.sh $1 $3.$status $5
+                    fi    
+
                     status="EXIT"
                     ;;                    
 
@@ -58,7 +71,4 @@ function runApp() {
     done
 }
 
-
-
-exec runApp $app1 &
-exec runApp $app2 &
+runTask $1 $2 $3 $4 $5
