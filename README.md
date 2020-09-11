@@ -16,5 +16,7 @@ the JSON file above should be graphically represented by the following flow
 ![Chart](https://raw.githubusercontent.com/expovin/QCSDirector/master/img/Chart.png)
 
 ## Logs
+Please add the folder logs in the project folder. That folder will contain all the execution logs. All the logs related to the same execution will be collected in the same subfolder. The log file name will be <TASK_LABEL>_<EXECUTION_STATUS>.json
 
-
+### Contact
+For problems please open a ticket here in git.
