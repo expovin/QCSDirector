@@ -1,27 +1,27 @@
 {
-    "TSK1" : {
+    "Customers_ETL" : {
         "appId" : "c6b0337f-8b23-419f-9441-d92b9d0736bc",
         "SUCCEEDED" : {
-            "Task4" : {
+            "WherhouseLoad" : {
                 "appId" : "c440337f-8b23-419f-9441-d92b9dabg630"
             }
         }
     },
 
-    "TSK2" : {
+    "Product_ETL" : {
         "appId" : "3f30032c-e702-4cd6-adb1-49406c1de43b",
         "SUCCEEDED" : {
-            "Task5" : {
+            "SalesDimensions" : {
                 "appId" : "c6b0337f-8b23-419f-9441-d92b9dabg630",
                 "SUCCEEDED" : {
-                    "Tasl6" : {
+                    "SalesAnalysis" : {
                         "appId" : "c440337f-8b23-419f-9441-d92b9dabg630"
                     }      
                 }          
             }
         },
         "FAILED" : {
-            "Task7" : {
+            "ReloadLastMonth" : {
                 "appId" : "bb00337f-8b23-419f-9441-d92b9dabg630"
             }
         }
