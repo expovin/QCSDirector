@@ -1,10 +1,19 @@
 #!/bin/bash
-# Author : Vincenzo Esposito
-# This script start loading the app wiht specific id and wait the end of task
-# Return the completed State SUCCEEDED | FAILED with the appid
+# Author : Vincenzo Esposito (ves@qlik.com)
+# First release : Sept 11, 2020
+# This script run the app loading giving the specific appId and wait the end of task
+# Save the log file in the execution log directory. Each log has the TaskName and Task execution status as log name
+# When the execution is completed call startSequence passing the the complete Task path.
+#
+# Git Repo: https://github.com/expovin/QCSDirector
 
 if [ $# -lt 4 ]; then
-    echo "\tUsage $0 <sequenceFile> <parent|null> <TaskName> <appId> [executionId]"
+    echo " "
+    echo "               ............................................................................."
+    echo "               Usage $0 <sequenceFile> <parent|null> <TaskName> <appId> [executionId]"
+    echo " "
+    echo "               Author: ves@qlik.com"
+    echo "               Repo  : https://github.com/expovin/QCSDirector"    
     exit 1
 fi
 
